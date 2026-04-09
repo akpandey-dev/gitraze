@@ -1,14 +1,24 @@
 [project]
 name = "gitraze"
 version = "0.0.1"
-description = "GitHub reconnaissance and search toolkit"
-authors = [{ name = "AK" }]
-dependencies = []
+description = "A CLI and Python library for GitHub reconnaissance, search, and analysis"
+authors = [{ name = "AK Pandey" }]
+dependencies = ["requests", "colorama"]
 readme = "README.md"
 requires-python = ">=3.8"
+license = { text = "MIT" }
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
 
 [project.scripts]
 gitraze = "gitraze.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/akpandey-dev/gitraze"
 
 [build-system]
 requires = ["setuptools"]
