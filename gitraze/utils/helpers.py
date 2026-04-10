@@ -1,4 +1,5 @@
 # helpers.py
+from datetime import datetime
 from colorama import Fore, Style, init
 
 init(autoreset=True)
@@ -27,3 +28,8 @@ def pretty_print(data, title=None):
         )
 
     print()  # spacing
+
+def format_date(date_str):
+    if not date_str:
+        return None
+    return datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ").strftime("%d %b %Y")
