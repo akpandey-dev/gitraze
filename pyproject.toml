@@ -1,6 +1,6 @@
 [project]
 name = "gitraze"
-version = "0.0.1"
+version = "0.0.2"
 description = "A CLI and Python library for GitHub reconnaissance, search, and analysis"
 authors = [{ name = "AK Pandey" }]
 dependencies = ["requests", "colorama"]

@@ -13,7 +13,7 @@ def main():
     parser.add_argument(
         "--version",
         action="version",
-        version="gitraze 0.0.1"
+        version="gitraze 0.0.2"
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -52,12 +52,14 @@ def main():
 # --- HANDLERS  ---
 
 def handle_user(args):
+    print("[+] Fetching user data...")
     data = get_user(args.username)
 
     if "error" in data:
         print(data["error"])
         return
 
+    print("[✓] Done")
     pretty_print(data, title=f"User: {args.username}")
 
 
