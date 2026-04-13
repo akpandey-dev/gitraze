@@ -1,6 +1,7 @@
 import argparse
 from gitraze.utils.helpers import pretty_print
-from gitraze.modules.user import get_user
+from gitraze.modules.user import get_user_rest
+from gitraze.modules.repo import get_repo_rest
 
 
 def main():
@@ -13,18 +14,18 @@ def main():
     parser.add_argument(
         "--version",
         action="version",
-        version="gitraze 0.0.2"
+        version="gitraze 0.1.0"
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # --- USER ---
     user_parser = subparsers.add_parser("user", help="Fetch user info (GitHub username)")
-    user_parser.add_argument("username")
+    user_parser.add_argument("username", help="Format: username")
 
     # --- REPO ---
     repo_parser = subparsers.add_parser("repo", help="Fetch repo info (Repository in owner/repo format)")
-    repo_parser.add_argument("repo")
+    repo_parser.add_argument("repo", help="Format: owner/repo")
 
     # --- SEARCH ---
     search_parser = subparsers.add_parser("search", help="Search GitHub")
@@ -53,7 +54,7 @@ def main():
 
 def handle_user(args):
     print("[+] Fetching user data...")
-    data = get_user(args.username)
+    data = get_user_rest(args.username)
 
     if "error" in data:
         print(data["error"])
@@ -64,8 +65,21 @@ def handle_user(args):
 
 
 def handle_repo(args):
-    print(f"[REPO] Fetching data for {args.repo}")
-    print("Not implemented yet")
+    print("[+] Fetching repository data...")
+    parts = args.repo.split("/")
+    
+    if len(parts) != 2:
+        print("Invalid format. Use: owner/repo")
+        return
+    owner, repo = parts
+    data = get_repo_rest(owner, repo)
+
+    if "error" in data:
+        print(data["error"])
+        return
+
+    print("[✓] Done")
+    pretty_print(data, title=f"User: {owner}, Repository: {repo}")
 
 
 def handle_search(args):

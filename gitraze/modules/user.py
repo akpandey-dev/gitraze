@@ -2,7 +2,7 @@
 from gitraze.utils.helpers import format_date 
 from gitraze.core.api_rest import get_user as rest_get_user
 
-def get_user(username):
+def get_user_rest(username):
     data = rest_get_user(username)
 
     if "error" in data:
