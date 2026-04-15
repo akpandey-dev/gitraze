@@ -2,6 +2,7 @@ import argparse
 from gitraze.utils.helpers import pretty_print
 from gitraze.modules.user import get_user_rest
 from gitraze.modules.repo import get_repo_rest
+from gitraze.modules.search import get_search_rest
 
 
 def main():
@@ -14,7 +15,7 @@ def main():
     parser.add_argument(
         "--version",
         action="version",
-        version="gitraze 0.1.0"
+        version="gitraze 0.2.0"
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -29,7 +30,9 @@ def main():
 
     # --- SEARCH ---
     search_parser = subparsers.add_parser("search", help="Search GitHub")
-    search_parser.add_argument("query", nargs="+")
+    search_parser.add_argument("category",choices=["repos", "users", "issues", "prs", "topics"],help="repos | users | issues | prs | topics")
+    search_parser.add_argument("query", nargs="+", help="Search category (repos, users, issues, topics)")
+    search_parser.add_argument("-n", "--limit", type=int, default=1, help="Number of results to show")
 
     # --- ANALYZE ---
     analyze_parser = subparsers.add_parser("analyze", help="Analyze target")
@@ -83,9 +86,21 @@ def handle_repo(args):
 
 
 def handle_search(args):
+    category = args.category
     query = " ".join(args.query)
-    print(f"[SEARCH] Searching for '{query}'")
-    print("Not implemented yet")
+    print(f"[+] Searching {category} for '{query}'...")
+
+    data = get_search_rest(args.category, args.query, args.limit)
+    if "error" in data:
+        print(data["error"])
+        return
+
+    print("[✓] Done")
+    if isinstance(data, list):
+        for i, item in enumerate(data, 1):
+            pretty_print(item, title=f"{category} [{i}] -> {query}")
+    else:
+        pretty_print(data, title=f"Search: {category} -> {query}")
 
 
 def handle_analysis(args):

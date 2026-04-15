@@ -1,9 +1,9 @@
 [project]
 name = "gitraze"
-version = "0.1.0"
+version = "0.2.0"
 description = "A CLI and Python library for GitHub reconnaissance, search, and analysis"
 authors = [{ name = "AK Pandey" }]
-dependencies = ["requests", "colorama"]
+dependencies = ["requests", "colorama", "re"]
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }

@@ -47,8 +47,9 @@ Example:
 ```bash
 gitraze --help
 gitraze user octocat
-gitraze repo torvalds/linux       # Coming soon!
-gitraze search "machine learning" # Not implemented yet
+gitraze repo torvalds/linux       
+gitraze search "machine learning" 
+gitraze analyze github # Coming soon!
 ```
 
 Example output:
