@@ -4,7 +4,10 @@
 
 Gitraze is a powerful command-line tool designed to explore, analyze, and extract insights from GitHub using both REST and GraphQL APIs — all from your terminal.
 
-⚠️ **Status:** Early development — expect bugs, missing features, and rapid changes.
+⚠️ **Status:** Early development — expect bugs, missing features, and rapid changes. APIs and CLI may change without notice.
+
+> Built for developers who prefer terminals over tabs.
+
 
 ---
 
@@ -27,8 +30,12 @@ Most GitHub tools are either slow, bloated, or UI-heavy.
 - 🌐 GitHub API integration (REST + GraphQL)
 - 📦 Repository insights
 - 👤 User analysis
-- 🔎 Search capabilities
+- 🧵 Filter PRs vs issues automatically
+- 🕒 Human-readable timestamps
+- 🧹 Cleaned descriptions (HTML stripped)
 - 📊 Analytics modules (in progress)
+- 🔎 Search users, repos, issues, PRs, and topics
+
 
 ---
 
@@ -47,8 +54,8 @@ Example:
 ```bash
 gitraze --help
 gitraze user octocat
-gitraze repo torvalds/linux       
-gitraze search "machine learning" 
+gitraze repo torvalds/linux  
+gitraze search repos "machine learning" -n 5 # Will show top 5 results, but it is optional flag
 gitraze analyze github # Coming soon!
 ```
 
