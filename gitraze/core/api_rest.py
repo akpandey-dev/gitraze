@@ -41,14 +41,26 @@ def get_repo(owner, repo):
     
 def get_search(category, query):
     url = f"{REST_BASE_URL}/search/{SEARCH_MAP.get(category)}"
-    if category == "issues":
-        query = query + " type:issue"
-    elif category == "prs":
-        query += " type:pr"
-    
+    filters = []
+    if category == "prs":
+        filters.append("type:pr")
+    elif category == "issues":
+        filters.append("type:issue")
+
+    filters.extend([
+        "in:title",
+        "comments:1..50",
+        "-author:app",
+    ])
+
+    final_query = f"{query} {' '.join(filters)}"
     params = {
-        "q": query 
+        "q": final_query,
+        "per_page": 100,
+        "sort": "comments",
+        "order": "desc"
     }
+
     try:
         response = requests.get(
             url,

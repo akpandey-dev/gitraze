@@ -15,7 +15,7 @@ def main():
     parser.add_argument(
         "--version",
         action="version",
-        version="gitraze 0.2.0"
+        version="gitraze 0.2.2"
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -87,15 +87,22 @@ def handle_repo(args):
 
 def handle_search(args):
     category = args.category
-    query = " ".join(args.query)
-    print(f"[+] Searching {category} for '{query}'...")
 
-    data = get_search_rest(args.category, args.query, args.limit)
+    raw_query = " ".join(args.query)
+    clean_query = raw_query.replace('"', '')
+    query = f'"{clean_query}"'
+
+    print(f"[+] Searching {category} for {query}...")
+
+
+    data = get_search_rest(category, query, args.limit)
+
     if "error" in data:
         print(data["error"])
         return
 
     print("[✓] Done")
+
     if isinstance(data, list):
         for i, item in enumerate(data, 1):
             pretty_print(item, title=f"{category} [{i}] -> {query}")

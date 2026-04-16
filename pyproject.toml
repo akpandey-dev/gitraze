@@ -1,6 +1,6 @@
 [project]
 name = "gitraze"
-version = "0.2.1"
+version = "0.2.2"
 description = "A CLI and Python library for GitHub reconnaissance, search, and analysis"
 authors = [{ name = "AK Pandey" }]
 dependencies = ["requests", "colorama"]
@@ -8,7 +8,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
 
-keywords = ["github", "cli", "api", "recon", "search"]
+keywords = ["github", "cli", "api", "recon", "search", "github-user", "repository"]
 
 classifiers = [
     "Programming Language :: Python :: 3",
