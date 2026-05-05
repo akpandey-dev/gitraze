@@ -16,25 +16,25 @@ Gitraze is a powerful command-line tool designed to explore, analyze, and extrac
 Most GitHub tools are either slow, bloated, or UI-heavy.
 
 **Gitraze is different:**
-- ⚡ Fast, minimal, no nonsense
-- 🧠 Built for developers who think in terminals
-- 🔍 Deep GitHub data access (REST + GraphQL)
-- 🧩 Modular and extensible architecture
+-  Fast, minimal, no nonsense
+-  Built for developers who think in terminals
+-  Deep GitHub data access (REST + GraphQL)
+-  Modular and extensible architecture
 
 ---
 
 ## Features
 
-- 🔌 Modular system (easy to extend and hack on)
-- 💻 CLI-first workflow
-- 🌐 GitHub API integration (REST + GraphQL)
-- 📦 Repository insights
-- 👤 User analysis
-- 🧵 Filter PRs vs issues automatically
-- 🕒 Human-readable timestamps
-- 🧹 Cleaned descriptions (HTML stripped)
-- 📊 Analytics modules (in progress)
-- 🔎 Search users, repos, issues, PRs, and topics
+-  Modular system (easy to extend and hack on)
+-  CLI-first workflow
+-  GitHub API integration (REST + GraphQL)
+-  Repository insights
+-  User analysis
+-  Filter PRs vs issues automatically
+-  Human-readable timestamps
+-  Cleaned descriptions (HTML stripped)
+-  Analytics modules (in progress)
+-  Search users, repos, issues, PRs, and topics
 
 
 ---
@@ -129,3 +129,4 @@ If you're here early — you're basically a beta tester 😈
 ## License
 
 MIT License — do whatever you want, just don’t blame me if you break stuff.
+

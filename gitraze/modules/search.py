@@ -5,6 +5,8 @@ from gitraze.core.api_rest import get_search
 
 
 def get_search_rest(category, query,  limit=1):
+    if category not in ["repos", "users", "issues", "prs", "topics"]:
+        return {"error": "Invalid category"}
     data = get_search(category, query)
     if "error" in data:
         return data
@@ -15,8 +17,6 @@ def get_search_rest(category, query,  limit=1):
     elif category == "prs":
         items = [i for i in items if "pull_request" in i]
         
-    if category not in ["repos", "users", "issues", "prs", "topics"]:
-        return {"error": "Invalid category"}
     if not items:
         return {"error": "No results found"}
     items = items[:limit]

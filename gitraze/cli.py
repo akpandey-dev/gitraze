@@ -15,7 +15,7 @@ def main():
     parser.add_argument(
         "--version",
         action="version",
-        version="gitraze 0.2.2"
+        version="gitraze 0.2.3"
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
