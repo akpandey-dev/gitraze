@@ -7,16 +7,9 @@ REST_BASE_URL = "https://api.github.com"
 GRAPHQL_URL = "https://api.github.com/graphql"
 DEFAULT_TIMEOUT = 10
 DEFAULT_HEADERS = {
-    "Accept": "application/vnd.github+json"
-}
+    "Accept": "application/vnd.github+json"}
 
-# --- USER CONFIG ---
-
-
-# --- REPO CONFIG ---
-
-
-# --- SEARCH CONFIG ---
+# --- SEARCH CATEGORIES CONFIG  ---
 SEARCH_MAP = {
     "repos": "repositories",
     "users": "users",
