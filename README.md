@@ -48,7 +48,7 @@ pip install gitraze
 
 ## Usage
 
-Run directly from your terminal:
+### Run directly from your terminal:
 
 Example: 
 ```bash
@@ -86,13 +86,78 @@ Email            : None
 Twitter_username : None
 
 ```
-> 💡 Commands prefixed with `$` should be run in your terminal.
+> Commands prefixed with `$` should be run in your terminal.
 
-You can also use it inside Python:
+### Gitraze can also be used as a lightweight Python SDK.
+
+#### User:
+```python
+import gitraze as gz
+
+user = gz.user("octocat")
+
+print(user["name"])
+print(user["followers"])
+```
+
+#### Search: 
 
 ```python
-import gitraze
+results = gz.search(gz.REPOS, "machine learning", 3)
+
+for repo in results:
+    print(repo["full_name"])
 ```
+
+### Pretty-print results in terminal style:
+
+```python
+from gitraze import *
+
+display(user("octocat"))
+```
+
+Example output:
+
+```bash
+Name             : The Octocat
+Login            : octocat
+Id               : 583231
+Node_id          : MDQ6VXNlcjU4MzIzMQ==
+Type             : User
+User_view_type   : public
+Bio              : None
+Followers        : 22578
+Following        : 9
+Public_repos     : 8
+Public_gists     : 8
+Location         : San Francisco
+Profile_url      : https://github.com/octocat
+Created_at       : 25 Jan 2011
+Email            : None
+Twitter_username : None
+```
+
+> Note: **`import gitraze as gz`** is the recommended import.
+
+## Available exports:
+
+### Functions: 
+
+- `user()`
+- `repo()`
+- `search()`
+- `display()`
+
+### Constants:
+
+- `USERS`
+- `REPOS`
+- `PRS`
+- `ISSUES`
+- `TOPICS`
+
+
 
 ⚠️ CLI commands are still evolving and may change.
 
@@ -125,6 +190,18 @@ Gitraze is in active development:
 - GraphQL feature is basically absent now, but is coming soon
 
 If you're here early — you're basically a beta tester 😈
+
+## Contributing
+
+PRs, ideas, bug reports, and feature suggestions are welcome.
+If you want to improve or modify Gitraze, go ahead.
+
+```bash
+git checkout -b feature/cool-thing
+```
+
+Just keep the code clean and the terminal fast.
+
 
 ## License
 
