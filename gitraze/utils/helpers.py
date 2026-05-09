@@ -30,6 +30,24 @@ def pretty_print(data, title=None):
 
     print()  # spacing
 
+def display(data, title=None):
+
+    if isinstance(data, list):
+
+        if not data:
+            print(Fore.RED + "No results found")
+            return
+
+        for i, item in enumerate(data, 1):
+
+            item_title = f"{title} [{i}]" if title else f"Result [{i}]"
+
+            pretty_print(item, title=item_title)
+
+        return
+
+    pretty_print(data, title=f"Result: ")
+
 def format_date(date_str):
     if not date_str:
         return None

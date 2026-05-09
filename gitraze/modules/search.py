@@ -41,7 +41,6 @@ def get_search_rest(category, query,  limit=1):
                 "visibility": item.get("visibility"),
                 "default_branch": item.get("default_branch"),
                 "owner": item.get("owner", {}).get("login"),
-                "For More, use": "$ gitraze repo <owner/repo>"
             })
 
             case "users":
@@ -55,7 +54,6 @@ def get_search_rest(category, query,  limit=1):
                 "followers_url": item.get("followers_url"),
                 "following_url": item.get("following_url"),
                 "organizations_url": item.get("organizations_url"),
-                "For More, use": "$ gitraze user <username>"
             })
 
             case "issues":
