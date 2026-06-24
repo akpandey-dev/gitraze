@@ -53,7 +53,7 @@ pip install gitraze
 Example: 
 ```bash
 gitraze --help
-gitraze user octocat
+gitraze user octocat --format=compact # Flag is entirely optional and available options are: 'compact', 'full', and 'raw'
 gitraze repo torvalds/linux  
 gitraze search repos "machine learning" -n 5 # Will show top 5 results, but it is optional flag
 gitraze analyze github # Coming soon!
@@ -99,6 +99,18 @@ user = gz.user("octocat")
 print(user["name"])
 print(user["followers"])
 ```
+
+#### Repository:
+```python
+import gitraze as gz
+
+repo = gz.repo("torvalds", "linux")
+
+print(repo["name"])
+print(repo["owner"])
+```
+
+> Note: Unlike the CLI, the SDK accepts owner and repository name as separate arguments.
 
 #### Search: 
 

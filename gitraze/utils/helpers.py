@@ -59,3 +59,18 @@ def format_date(date_str):
 
 def clean_html(text):
     return re.sub(r"<.*?>", "", text) if text else text
+
+def normalize_api_data(data):
+    cleaned = {}
+
+    for key, value in data.items():
+
+        if key.endswith("_at") and isinstance(value, str):
+            value = format_date(value)
+
+        if isinstance(value, str):
+            value = clean_html(value)
+
+        cleaned[key] = value
+
+    return cleaned
