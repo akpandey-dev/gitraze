@@ -30,6 +30,7 @@ def main():
     # REPO 
     repo_parser = subparsers.add_parser("repo", help="Fetch repo info (Repository in owner/repo format)")
     repo_parser.add_argument("repo", help="Format: owner/repo")
+    repo_parser.add_argument("--format", choices=["compact", "full", "raw"], default="compact", help="Output format (default: compact)")
     repo_parser.set_defaults(func=handle_repo)
 
 

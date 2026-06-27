@@ -1,13 +1,19 @@
 # repo.py
 from gitraze.utils.helpers import format_date 
+from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_repo as rest_get_repo
 
-def get_repo_rest(owner, repo):
+def get_repo_rest(owner, repo, output_format="compact"):
     data = rest_get_repo(owner, repo)
 
     if "error" in data:
         return data
-    
+
+    if output_format == "raw":
+        return data
+    if output_format == "full":
+        return normalize_api_data(data)
+        
     return {
         "name": data.get("name"),
         "full_name": data.get("full_name"),

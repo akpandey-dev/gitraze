@@ -11,6 +11,7 @@ def handle_user(args):
         return
 
     print("[✓] Done")
+    
     if args.format == "raw":
         print(json.dumps(data, indent=2))
         return
