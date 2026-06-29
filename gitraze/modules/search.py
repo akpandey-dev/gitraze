@@ -1,12 +1,16 @@
 # search.py
 from gitraze.utils.helpers import format_date 
 from gitraze.utils.helpers import clean_html
+from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_search
 
 
-def get_search_rest(category, query,  limit=1):
+def get_search_rest(category, query,  limit=1, output_format="compact"):
     if category not in ["repos", "users", "issues", "prs", "topics"]:
         return {"error": "Invalid category"}
+    if output_format not in ["compact", "full", "raw"]:
+        return {"error": "Invalid output format"}
+
     data = get_search(category, query)
     if "error" in data:
         return data
@@ -20,6 +24,12 @@ def get_search_rest(category, query,  limit=1):
     if not items:
         return {"error": "No results found"}
     items = items[:limit]
+
+    if output_format == "raw":
+        return items
+    if output_format == "full":
+        return [normalize_api_data(item) for item in items]
+
     results = []
 
     for item in items:
