@@ -2,7 +2,7 @@
 
 > A fast, hacker-style CLI for slicing through GitHub data like a blade.
 
-Gitraze is a powerful command-line tool designed to explore, analyze, and extract insights from GitHub using both REST and GraphQL APIs(coming soon) — all from your terminal.
+Gitraze is a powerful command-line tool designed to explore, analyze, and extract insights from GitHub using REST, with GraphQL support coming soon; all from your terminal.
 
 ⚠️ **Status:** Early development — expect bugs, missing features, and rapid changes. APIs and CLI may change without notice.
 
@@ -73,9 +73,9 @@ Example:
 ```bash
 gitraze --version
 gitraze --help
-gitraze user octocat --format=compact # The flag is optional, options are 'full', 'compact' and 'raw', default is 'compact'
-gitraze repo torvalds/linux  # Query format must match
-gitraze search repos "machine learning" -n 5 # Will show top 5 results, but it is optional flag; default is 1
+gitraze user octocat --format=raw 
+gitraze repo torvalds/linux --format=full # Query format must match
+gitraze search repos "machine learning" -n 5 --format=compact 
 gitraze analyze <target> # Coming soon!
 ```
 
@@ -116,7 +116,7 @@ Twitter_username : None
 ```python
 import gitraze as gz
 
-user = gz.user("octocat")
+user = gz.user("octocat", output_format="compact")
 
 print(user["name"])
 print(user["followers"])
@@ -126,7 +126,7 @@ print(user["followers"])
 ```python
 import gitraze as gz
 
-repo = gz.repo("torvalds", "linux")
+repo = gz.repo("torvalds", "linux", output_format="full")
 
 print(repo["name"])
 print(repo["owner"])
@@ -137,7 +137,9 @@ print(repo["owner"])
 #### Search: 
 
 ```python
-results = gz.search(gz.REPOS, "machine learning", 3)
+import gitraze as gz
+
+results = gz.search(gz.REPOS, "machine learning", 3, output_format="compact")
 
 for repo in results:
     print(repo["full_name"])
@@ -145,12 +147,14 @@ for repo in results:
 
 ### Custom Output Format:
 
+All three SDK functions support output customization:
+
 ```python
 import gitraze as gz
 
 user = gz.user("octocat", output_format="full")
-
-print(user)
+repo = gz.repo("torvalds", "linux", output_format="raw")
+results = gz.search(gz.REPOS, "machine learning", 3, output_format="full")
 ```
 
 #### Available options are:
@@ -158,8 +162,6 @@ print(user)
 * `output_format="compact"`: Returns a concise, human-friendly subset of the most useful fields.
 * `output_format="full"`: Returns all available processed fields exposed by Gitraze.
 * `output_format="raw"`: Returns the raw GitHub API response without filtering or formatting.
-
-> Note: Output format customization is currently available to the `user` command only.
 
 
 ### Pretty-print results in terminal style:
@@ -200,8 +202,8 @@ Twitter_username : None
 ### Functions: 
 
 - `user(username, output_format="compact")`
-- `repo(owner, repo)`
-- `search(category, query, limit=1)`
+- `repo(owner, repo, output_format="compact")`
+- `search(category, query, limit=1, output_format="compact")`
 - `display(data)`
 
 ### Constants:
