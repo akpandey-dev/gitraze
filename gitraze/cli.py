@@ -8,7 +8,7 @@ from gitraze.handlers.analyze import handle_analysis
 def main():
     parser = argparse.ArgumentParser(
         prog="gitraze",
-        description="GitRaze CLI Tool"
+        description="Gitraze CLI Tool"
     )
 
     # Global flag

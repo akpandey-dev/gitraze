@@ -4,7 +4,7 @@ from .modules.search import get_search_rest as search
 
 from .utils.helpers import display
 
-__version__ = "0.2.5"
+__version__ = "0.3.0"
 
 USERS = "users"
 REPOS = "repos"
