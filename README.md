@@ -1,8 +1,8 @@
 # Gitraze
 
-> A fast, hacker-style CLI for slicing through GitHub data like a blade.
+> A CLI and Python library for GitHub exploration, search, and analysis
 
-Gitraze is a powerful command-line tool designed to explore, analyze, and extract insights from GitHub using REST, with GraphQL support coming soon; all from your terminal.
+Gitraze is a CLI and Python library for exploring, analyzing, and extracting insights from GitHub through the REST API, with GraphQL planned.
 
 ⚠️ **Status:** Early development — expect bugs, missing features, and rapid changes. APIs and CLI may change without notice.
 
@@ -28,7 +28,7 @@ Most GitHub tools are either slow, bloated, or UI-heavy.
 **Gitraze is different:**
 -  Fast, minimal, no nonsense
 -  Built for developers who think in terminals
--  Deep GitHub data access (REST + GraphQL)
+-  Deep GitHub data access through the REST API
 -  Modular and extensible architecture
 
 ---
@@ -37,7 +37,7 @@ Most GitHub tools are either slow, bloated, or UI-heavy.
 
 -  Modular system (easy to extend and hack on)
 -  CLI-first workflow
--  GitHub API integration (REST + GraphQL)
+-  GitHub API integration through REST; GraphQL planned
 -  Repository insights
 -  User analysis
 -  Filter PRs vs issues automatically
@@ -57,12 +57,12 @@ Most GitHub tools are either slow, bloated, or UI-heavy.
 pip install gitraze
 ```
 
-### Using source code from Repository
+### From source code
 
 > Read the `Development setup` section.
 
 ---
-> There may be some gap between releases on GitHub and PyPI, as more than one commits are sometimes clustered as a single release on PyPI.
+> There may be some gaps between releases on GitHub and PyPI, as multiple commits are sometimes clustered into a single release on PyPI.
 
 
 ## Usage
@@ -223,8 +223,7 @@ Twitter_username : None
 
 Gitraze is built for speed, clarity, and control.
 
-No GUI. No clutter. No distractions.  
-Just raw access to GitHub data — the way it should be.
+No clutter, no distractions — just raw access to GitHub data, the way it should be.
 
 If you live in the terminal, Gitraze lives with you.
 
@@ -245,7 +244,7 @@ Gitraze is in active development:
 - Expect breaking changes
 - Some commands may not work
 - Features are being added rapidly
-- GraphQL feature is basically absent now, but integration is planned; currently REST-focused.
+- GraphQL is not implemented yet; Gitraze is REST-focused for now.
 
 If you're here early — you're basically a beta tester.
 
