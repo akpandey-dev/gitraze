@@ -4,6 +4,8 @@ from gitraze.config import REST_BASE_URL, DEFAULT_HEADERS, DEFAULT_TIMEOUT
 from gitraze.config import SEARCH_MAP
 
 def get_user(username):
+    """Fetch raw user data from the GitHub REST API."""
+
     url = f"{REST_BASE_URL}/users/{username}"
 
     try:
@@ -23,6 +25,8 @@ def get_user(username):
 
 
 def get_repo(owner, repo):
+    """Fetch raw repository data from the GitHub REST API."""
+
     url = f"{REST_BASE_URL}/repos/{owner}/{repo}"
     try:
         response = requests.get(
@@ -40,6 +44,8 @@ def get_repo(owner, repo):
         return {"error": f"Request failed: {str(e)}"}
     
 def get_search(category, query):
+    """Fetch raw search results from the GitHub REST API."""
+
     url = f"{REST_BASE_URL}/search/{SEARCH_MAP.get(category)}"
 
     filters = []

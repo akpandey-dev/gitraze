@@ -4,6 +4,16 @@ from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_user as rest_get_user
 
 def get_user_rest(username, output_format="compact"):
+    """Fetch GitHub user data in the requested output format.
+
+    Args:
+        username: GitHub username to fetch.
+        output_format: Output format: "compact", "full", or "raw".
+
+    Returns:
+        User data in the requested format, or an error dictionary.
+    """
+    
     data = rest_get_user(username)
 
     if "error" in data:

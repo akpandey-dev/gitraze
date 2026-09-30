@@ -7,6 +7,8 @@ init(autoreset=True)
 
 
 def pretty_print(data, title=None):
+    """Print dictionary data as formatted key-value pairs."""
+
     if not isinstance(data, dict):
         print(Fore.RED + "Invalid data format")
         return
@@ -31,7 +33,8 @@ def pretty_print(data, title=None):
     print()  # spacing
 
 def display(data, title=None):
-
+    """Display dictionary or list data in a formatted terminal layout."""
+    
     if isinstance(data, list):
 
         if not data:
@@ -39,9 +42,7 @@ def display(data, title=None):
             return
 
         for i, item in enumerate(data, 1):
-
             item_title = f"{title} [{i}]" if title else f"Result [{i}]"
-
             pretty_print(item, title=item_title)
 
         return
@@ -49,6 +50,8 @@ def display(data, title=None):
     pretty_print(data, title=f"Result: ")
 
 def format_date(date_str):
+    """Format a GitHub API date string for display."""
+
     if not date_str:
         return None
 
@@ -58,11 +61,14 @@ def format_date(date_str):
         return date_str  # fallback (don’t crash)
 
 def clean_html(text):
+    """Remove HTML tags from text."""
+
     return re.sub(r"<.*?>", "", text) if text else text
 
 def normalize_api_data(data):
-    cleaned = {}
+    """Normalize API data for human-readable output."""
 
+    cleaned = {}
     for key, value in data.items():
 
         if key.endswith("_at") and isinstance(value, str):

@@ -4,6 +4,17 @@ from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_repo as rest_get_repo
 
 def get_repo_rest(owner, repo, output_format="compact"):
+    """Fetch GitHub repository data in the requested output format.
+
+    Args:
+        owner: GitHub repository owner's username or organization name.
+        repo: GitHub repository name.
+        output_format: Output format: "compact", "full", or "raw".
+
+    Returns:
+        Repository data in the requested format, or an error dictionary.
+    """
+    
     data = rest_get_repo(owner, repo)
 
     if "error" in data:

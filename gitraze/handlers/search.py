@@ -3,6 +3,8 @@ from gitraze.utils.helpers import pretty_print
 from gitraze.modules.search import get_search_rest
 
 def handle_search(args):
+    """Handle the search CLI command."""
+
     category = args.category
 
     raw_query = " ".join(args.query)

@@ -3,6 +3,8 @@ from gitraze.utils.helpers import pretty_print
 from gitraze.modules.repo import get_repo_rest
 
 def handle_repo(args):
+    """Handle the repo CLI command."""
+
     print("[+] Fetching repository data...")
     parts = args.repo.split("/")
     

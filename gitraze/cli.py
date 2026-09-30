@@ -6,6 +6,8 @@ from gitraze.handlers.analyze import handle_analysis
 
 
 def main():
+    """Parse CLI arguments and dispatch the selected command."""
+    
     parser = argparse.ArgumentParser(
         prog="gitraze",
         description="Gitraze CLI Tool"

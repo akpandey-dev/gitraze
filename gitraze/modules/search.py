@@ -6,6 +6,18 @@ from gitraze.core.api_rest import get_search
 
 
 def get_search_rest(category, query,  limit=1, output_format="compact"):
+    """Search GitHub and return results in the requested output format.
+
+    Args:
+        category: Search category: "repos", "users", "issues", "prs", or "topics".
+        query: Search query passed to GitHub.
+        limit: Maximum number of results to return.
+        output_format: Output format: "compact", "full", or "raw".
+
+    Returns:
+        Search results in the requested format, or an error dictionary.
+    """
+        
     if category not in ["repos", "users", "issues", "prs", "topics"]:
         return {"error": "Invalid category"}
     if output_format not in ["compact", "full", "raw"]:

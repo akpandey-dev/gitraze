@@ -3,6 +3,8 @@ from gitraze.utils.helpers import pretty_print
 from gitraze.modules.user import get_user_rest
 
 def handle_user(args):
+    """Handle the user CLI command."""
+
     print("[+] Fetching user data...")
     data = get_user_rest(args.username, output_format=args.format)
 
