@@ -6,7 +6,7 @@ def handle_user(args):
     """Handle the user CLI command."""
 
     print("[+] Fetching user data...")
-    data = get_user_rest(args.username, output_format=args.format)
+    data = get_user_rest(args.username, data_format=args.data_format)
 
     if "error" in data:
         print(data["error"])
@@ -14,7 +14,7 @@ def handle_user(args):
 
     print("[✓] Done")
     
-    if args.format == "raw":
+    if args.data_format == "raw":
         print(json.dumps(data, indent=2))
         return
 

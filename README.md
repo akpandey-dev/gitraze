@@ -45,6 +45,7 @@ Most GitHub tools are either slow, bloated, or UI-heavy.
 -  Cleaned descriptions (HTML stripped)
 -  Analytics modules (in progress)
 -  Search users, repos, issues, PRs, and topics
+-  Three data formats
 
 
 ---
@@ -73,9 +74,9 @@ Example:
 ```bash
 gitraze --version
 gitraze --help
-gitraze user octocat --format=raw 
-gitraze repo torvalds/linux --format=full # Query format must match
-gitraze search repos "machine learning" -n 5 --format=compact 
+gitraze user octocat --data-format=raw 
+gitraze repo torvalds/linux --data-format=full
+gitraze search repos "machine learning" -n 5 --data-format=compact 
 gitraze analyze <target> # Coming soon!
 ```
 
@@ -116,7 +117,7 @@ Twitter_username : None
 ```python
 import gitraze as gz
 
-user = gz.user("octocat", output_format="compact")
+user = gz.user("octocat", data_format="compact")
 
 print(user["name"])
 print(user["followers"])
@@ -126,7 +127,7 @@ print(user["followers"])
 ```python
 import gitraze as gz
 
-repo = gz.repo("torvalds", "linux", output_format="full")
+repo = gz.repo("torvalds", "linux", data_format="full")
 
 print(repo["name"])
 print(repo["owner"])
@@ -139,29 +140,29 @@ print(repo["owner"])
 ```python
 import gitraze as gz
 
-results = gz.search(gz.REPOS, "machine learning", 3, output_format="compact")
+results = gz.search(gz.REPOS, "machine learning", 3, data_format="compact")
 
 for repo in results:
     print(repo["full_name"])
 ```
 
-### Custom Output Format:
+### Data Formats:
 
-All three SDK functions support output customization:
+All three SDK functions support different data formats:
 
 ```python
 import gitraze as gz
 
-user = gz.user("octocat", output_format="full")
-repo = gz.repo("torvalds", "linux", output_format="raw")
-results = gz.search(gz.REPOS, "machine learning", 3, output_format="full")
+user = gz.user("octocat", data_format="full")
+repo = gz.repo("torvalds", "linux", data_format="raw")
+results = gz.search(gz.REPOS, "machine learning", 3, data_format="full")
 ```
 
 #### Available options are:
 
-* `output_format="compact"`: Returns a concise, human-friendly subset of the most useful fields.
-* `output_format="full"`: Returns all available processed fields exposed by Gitraze.
-* `output_format="raw"`: Returns the raw GitHub API response without filtering or formatting.
+* `data_format="compact"`: Returns a concise, human-friendly subset of the most useful fields.
+* `data_format="full"`: Returns all available processed fields exposed by Gitraze.
+* `data_format="raw"`: Returns the raw GitHub API response without filtering or formatting.
 
 
 ### Pretty-print results in terminal style:
@@ -201,9 +202,9 @@ Twitter_username : None
 
 ### Functions: 
 
-- `user(username, output_format="compact")`
-- `repo(owner, repo, output_format="compact")`
-- `search(category, query, limit=1, output_format="compact")`
+- `user(username, data_format="compact")`
+- `repo(owner, repo, data_format="compact")`
+- `search(category, query, limit=1, data_format="compact")`
 - `display(data)`
 
 ### Constants:

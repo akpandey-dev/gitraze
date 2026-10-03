@@ -3,13 +3,13 @@ from gitraze.utils.helpers import format_date
 from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_repo as rest_get_repo
 
-def get_repo_rest(owner, repo, output_format="compact"):
-    """Fetch GitHub repository data in the requested output format.
+def get_repo_rest(owner, repo, data_format="compact"):
+    """Fetch GitHub repository data in the requested data format.
 
     Args:
         owner: GitHub repository owner's username or organization name.
         repo: GitHub repository name.
-        output_format: Output format: "compact", "full", or "raw".
+        data_format: Data format: "compact", "full", or "raw".
 
     Returns:
         Repository data in the requested format, or an error dictionary.
@@ -20,9 +20,9 @@ def get_repo_rest(owner, repo, output_format="compact"):
     if "error" in data:
         return data
 
-    if output_format == "raw":
+    if data_format == "raw":
         return data
-    if output_format == "full":
+    if data_format == "full":
         return normalize_api_data(data)
         
     return {

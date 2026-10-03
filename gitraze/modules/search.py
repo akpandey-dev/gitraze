@@ -5,14 +5,14 @@ from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_search
 
 
-def get_search_rest(category, query,  limit=1, output_format="compact"):
-    """Search GitHub and return results in the requested output format.
+def get_search_rest(category, query,  limit=1, data_format="compact"):
+    """Search GitHub and return results in the requested data format.
 
     Args:
         category: Search category: "repos", "users", "issues", "prs", or "topics".
         query: Search query passed to GitHub.
         limit: Maximum number of results to return.
-        output_format: Output format: "compact", "full", or "raw".
+        data_format: Data format: "compact", "full", or "raw".
 
     Returns:
         Search results in the requested format, or an error dictionary.
@@ -20,8 +20,8 @@ def get_search_rest(category, query,  limit=1, output_format="compact"):
         
     if category not in ["repos", "users", "issues", "prs", "topics"]:
         return {"error": "Invalid category"}
-    if output_format not in ["compact", "full", "raw"]:
-        return {"error": "Invalid output format"}
+    if data_format not in ["compact", "full", "raw"]:
+        return {"error": "Invalid data format"}
 
     data = get_search(category, query)
     if "error" in data:
@@ -37,9 +37,9 @@ def get_search_rest(category, query,  limit=1, output_format="compact"):
         return {"error": "No results found"}
     items = items[:limit]
 
-    if output_format == "raw":
+    if data_format == "raw":
         return items
-    if output_format == "full":
+    if data_format == "full":
         return [normalize_api_data(item) for item in items]
 
     results = []

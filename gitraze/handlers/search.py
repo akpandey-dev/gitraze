@@ -14,7 +14,7 @@ def handle_search(args):
     print(f"[+] Searching {category} for {query}...")
 
 
-    data = get_search_rest(category, query, args.limit, output_format=args.format)
+    data = get_search_rest(category, query, args.limit, data_format=args.data_format)
 
     if "error" in data:
         print(data["error"])
@@ -22,7 +22,7 @@ def handle_search(args):
 
     print("[✓] Done")
 
-    if args.format == "raw":
+    if args.data_format == "raw":
         print(json.dumps(data, indent=2))
         return
 

@@ -3,12 +3,12 @@ from gitraze.utils.helpers import format_date
 from gitraze.utils.helpers import normalize_api_data
 from gitraze.core.api_rest import get_user as rest_get_user
 
-def get_user_rest(username, output_format="compact"):
-    """Fetch GitHub user data in the requested output format.
+def get_user_rest(username, data_format="compact"):
+    """Fetch GitHub user data in the requested data format.
 
     Args:
         username: GitHub username to fetch.
-        output_format: Output format: "compact", "full", or "raw".
+        data_format: Data format: "compact", "full", or "raw".
 
     Returns:
         User data in the requested format, or an error dictionary.
@@ -20,9 +20,9 @@ def get_user_rest(username, output_format="compact"):
         return data
 
 
-    if output_format == "raw":
+    if data_format == "raw":
         return data
-    if output_format == "full":
+    if data_format == "full":
         return normalize_api_data(data)
 
     return {

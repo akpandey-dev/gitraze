@@ -12,7 +12,7 @@ def handle_repo(args):
         print("Invalid format. Use: owner/repo")
         return
     owner, repo = parts
-    data = get_repo_rest(owner, repo, output_format=args.format)
+    data = get_repo_rest(owner, repo, data_format=args.data_format)
 
     if "error" in data:
         print(data["error"])
@@ -20,7 +20,7 @@ def handle_repo(args):
 
     print("[✓] Done")
 
-    if args.format == "raw":
+    if args.data_format == "raw":
         print(json.dumps(data, indent=2))
         return
     pretty_print(data, title=f"User: {owner}, Repository: {repo}")

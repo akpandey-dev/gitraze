@@ -9,7 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Added docstrings across `core`, `handlers`, `modules`, `utilities`, and `CLI functions`.
+* Renamed the public output_format parameter to data_format to distinguish data representation from output destination.
+* Renamed the CLI --format option to --data-format to match the SDK terminology.
+* Added docstrings across `core`, `handlers`, `modules`, `utilities`, and `CLI functions`.
 * Corrected the project version number in `gitraze/__init__.py`.
 * Cleaned up `gitraze/config.py`.
 
