@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+* Introduced separate documentation folder for project
+
+## [0.4.0] - 2026-10-03
+
 ### Changed
 
 * Renamed the public output_format parameter to data_format to distinguish data representation from output destination.
@@ -147,6 +151,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Established the initial CLI and Python package structure.
 
 [Unreleased]: https://github.com/akpandey-dev/gitraze/compare/v0.3.0...HEAD
+[0.4.0]: https://github.com/akpandey-dev/gitraze/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/akpandey-dev/gitraze/compare/v0.2.6...v0.3.0
 [0.2.6]: https://github.com/akpandey-dev/gitraze/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/akpandey-dev/gitraze/compare/v0.2.4...v0.2.5
