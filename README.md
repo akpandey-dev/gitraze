@@ -25,200 +25,90 @@ Gitraze is a CLI and Python library for exploring, analyzing, and extracting ins
 
 Most GitHub tools are either slow, bloated, or UI-heavy.
 
-**Gitraze is different:**
--  Fast, minimal, no nonsense
--  Built for developers who think in terminals
--  Deep GitHub data access through the REST API
--  Modular and extensible architecture
+Gitraze is built around a simpler approach:
+
+* Fast, minimal, no nonsense
+* Built for developers who think in terminals
+* Deep GitHub data access through the REST API
+* Modular and extensible architecture
 
 ---
 
 ## Features
 
--  Modular system (easy to extend and hack on)
--  CLI-first workflow
--  GitHub API integration through REST; GraphQL planned
--  Repository insights
--  User analysis
--  Filter PRs vs issues automatically
--  Human-readable timestamps
--  Cleaned descriptions (HTML stripped)
--  Analytics modules (in progress)
--  Search users, repos, issues, PRs, and topics
--  Three data formats
-
+* Modular system
+* CLI-first workflow
+* GitHub REST API integration
+* Repository insights
+* User analysis
+* Search users, repositories, issues, pull requests, and topics
+* Automatic filtering of pull requests and issues
+* Human-readable timestamps
+* Cleaned descriptions
+* Analytics modules in progress
+* GraphQL planned
 
 ---
 
 ## Installation
 
-### From PyPI using `pip`
+### From PyPI
 
 ```bash
 pip install gitraze
 ```
 
-### From source code
+### From source
 
-> Read the `Development setup` section.
+```bash
+git clone https://github.com/akpandey-dev/gitraze.git
+cd gitraze
+pip install -e .
+```
 
----
 > There may be some gaps between releases on GitHub and PyPI, as multiple commits are sometimes clustered into a single release on PyPI.
 
 
+---
+
 ## Usage
 
-### Run directly from your terminal:
+Gitraze can be used from the command line or as a Python library.
 
-Example: 
+### CLI
+
+```bash
+gitraze --help
+```
+
+Example:
+
 ```bash
 gitraze --version
 gitraze --help
-gitraze user octocat --data-format=raw 
-gitraze repo torvalds/linux --data-format=full
-gitraze search repos "machine learning" -n 5 --data-format=compact 
+gitraze user octocat --data-format=raw
+gitraze repo torvalds/linux --data-format=full # Query format must match
+gitraze search repos "machine learning" -n 5 --data-format=compact
 gitraze analyze <target> # Coming soon!
 ```
 
-Example output:
+### Python
 
-```bash
-$ gitraze user octocat
-
-[+] Fetching user data...
-[✓] Done
-
-User: octocat
--------------
-Name             : The Octocat
-Login            : octocat
-Id               : 583231
-Node_id          : MDQ6VXNlcjU4MzIzMQ==
-Type             : User
-User_view_type   : public
-Bio              : None
-Followers        : 22312
-Following        : 9
-Public_repos     : 8
-Public_gists     : 8
-Location         : San Francisco
-Profile_url      : https://github.com/octocat
-Created_at       : 25 Jan 2011
-Email            : None
-Twitter_username : None
-
-```
-
-> Commands prefixed with `$` should be run in your terminal.
-
-### Gitraze can also be used as a lightweight Python SDK.
-
-#### User:
 ```python
 import gitraze as gz
+```
 
+For example:
+```python
+import gitraze as gz
 user = gz.user("octocat", data_format="compact")
-
 print(user["name"])
 print(user["followers"])
 ```
 
-#### Repository:
-```python
-import gitraze as gz
+For command usage, API reference, output formats, and examples, see the **[documentation](docs/)**.
 
-repo = gz.repo("torvalds", "linux", data_format="full")
-
-print(repo["name"])
-print(repo["owner"])
-```
-
-> Note: Unlike the CLI, the SDK accepts owner and repository name as separate arguments.
-
-#### Search: 
-
-```python
-import gitraze as gz
-
-results = gz.search(gz.REPOS, "machine learning", 3, data_format="compact")
-
-for repo in results:
-    print(repo["full_name"])
-```
-
-### Data Formats:
-
-All three SDK functions support different data formats:
-
-```python
-import gitraze as gz
-
-user = gz.user("octocat", data_format="full")
-repo = gz.repo("torvalds", "linux", data_format="raw")
-results = gz.search(gz.REPOS, "machine learning", 3, data_format="full")
-```
-
-#### Available options are:
-
-* `data_format="compact"`: Returns a concise, human-friendly subset of the most useful fields.
-* `data_format="full"`: Returns all available processed fields exposed by Gitraze.
-* `data_format="raw"`: Returns the raw GitHub API response without filtering or formatting.
-
-
-### Pretty-print results in terminal style:
-
-```python
-from gitraze import *
-
-display(user("octocat"))
-```
-
-Example output:
-
-```bash
-Name             : The Octocat
-Login            : octocat
-Id               : 583231
-Node_id          : MDQ6VXNlcjU4MzIzMQ==
-Type             : User
-User_view_type   : public
-Bio              : None
-Followers        : 22578
-Following        : 9
-Public_repos     : 8
-Public_gists     : 8
-Location         : San Francisco
-Profile_url      : https://github.com/octocat
-Created_at       : 25 Jan 2011
-Email            : None
-Twitter_username : None
-```
-
-> Note: **`import gitraze as gz`** is the recommended import.
-
-> Note: Exact fields and values may differ from the examples shown, depending on the GitHub API response.
-
-## Available exports:
-
-### Functions: 
-
-- `user(username, data_format="compact")`
-- `repo(owner, repo, data_format="compact")`
-- `search(category, query, limit=1, data_format="compact")`
-- `display(data)`
-
-### Constants:
-
-- `USERS`
-- `REPOS`
-- `PRS`
-- `ISSUES`
-- `TOPICS`
-
-> Constants depend on the module internals and may change without prior notice.
-
-> CLI commands and SDK APIs are still evolving and may change between releases.
-
+---
 
 ## Philosophy
 
@@ -228,31 +118,27 @@ No clutter, no distractions — just raw access to GitHub data, the way it shoul
 
 If you live in the terminal, Gitraze lives with you.
 
-## Development Setup
-
-Clone the repo and install locally:
-
-```bash
-git clone https://github.com/akpandey-dev/gitraze.git
-cd gitraze
-pip install -e .
-```
+---
 
 ## Project Status
 
 Gitraze is in active development:
 
-- Expect breaking changes
-- Some commands may not work
-- Features are being added rapidly
-- GraphQL is not implemented yet; Gitraze is REST-focused for now.
+* Expect breaking changes
+* Some commands may not work
+* Features are being added rapidly
+* GraphQL is not implemented yet; Gitraze is REST-focused for now
 
 If you're here early — you're basically a beta tester.
+
+---
 
 ## Contributing
 
 PRs, ideas, bug reports, and feature suggestions are welcome.
+
 If you want to improve or modify Gitraze, go ahead.
+
 * Fork the repository
 * Create a feature branch
 * Submit a PR with clean commit messages
@@ -263,8 +149,8 @@ git checkout -b feature/cool-thing
 
 Just keep the code clean and the terminal fast.
 
+---
 
 ## License
 
-MIT License — do whatever you want, just don’t blame me if you break stuff.
-
+MIT License — do whatever you want, just don't blame me if you break stuff.

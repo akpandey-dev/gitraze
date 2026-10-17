@@ -6,4 +6,6 @@ Documentation for Gitraze, a CLI and Python library for GitHub exploration, sear
 
 - [CLI](cli.md) — Command-line usage and commands
 - [SDK](sdk.md) — Python API and library usage
-- [Development](development.md) — Setup and development workflow
+- [Development](development.md) — Development setup and information
+
+> View [README](../README.md) for an overview
