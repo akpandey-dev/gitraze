@@ -1,5 +1,5 @@
 import json
-from gitraze.utils.helpers import pretty_print
+from gitraze.utils.helpers import file_save, pretty_print
 from gitraze.modules.search import get_search_rest
 
 def handle_search(args):
@@ -22,12 +22,16 @@ def handle_search(args):
 
     print("[✓] Done")
 
-    if args.data_format == "raw":
-        print(json.dumps(data, indent=2))
+    if args.output_action == "save":
+        file_save(data, f"{category}-{clean_query}-data.json")
         return
-
-    if isinstance(data, list):
-        for i, item in enumerate(data, 1):
-            pretty_print(item, title=f"{category} [{i}] -> {query}")
-    else:
-        pretty_print(data, title=f"Search: {category} -> {query}")
+    elif args.output_action == "display":
+        if args.data_format == "raw":
+            print(json.dumps(data, indent=2))
+            return
+        else:
+            if isinstance(data, list):
+                for i, item in enumerate(data, 1):
+                    pretty_print(item, title=f"{category} [{i}] -> {query}")
+            else:
+                pretty_print(data, title=f"Search: {category} -> {query}")

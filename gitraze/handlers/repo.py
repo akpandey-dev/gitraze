@@ -1,5 +1,5 @@
 import json
-from gitraze.utils.helpers import pretty_print
+from gitraze.utils.helpers import file_save, pretty_print
 from gitraze.modules.repo import get_repo_rest
 
 def handle_repo(args):
@@ -20,7 +20,12 @@ def handle_repo(args):
 
     print("[✓] Done")
 
-    if args.data_format == "raw":
-        print(json.dumps(data, indent=2))
+    if args.output_action == "save":
+        file_save(data, f"{owner}-{repo}-data.json")
         return
-    pretty_print(data, title=f"User: {owner}, Repository: {repo}")
+    elif args.output_action == "display":
+        if args.data_format == "raw":
+            print(json.dumps(data, indent=2))
+            return
+        else:
+            pretty_print(data, title=f"User: {owner}, Repository: {repo}")
