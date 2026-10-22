@@ -3,6 +3,8 @@ from .modules.repo import get_repo_rest as repo
 from .modules.search import get_search_rest as search
 
 from .utils.helpers import display
+from .utils.helpers import save
+from .utils.helpers import output_action
 
 __version__ = "0.4.0"
 
@@ -13,7 +15,9 @@ ISSUES = "issues"
 TOPICS = "topics"
 
 __all__ = [
+    "output_action",
     "display",
+    "save",
     "user",
     "repo",
     "search",

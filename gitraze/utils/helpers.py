@@ -1,5 +1,6 @@
 # helpers.py
 from datetime import datetime
+import json
 from colorama import Fore, Style, init
 import re
 
@@ -48,6 +49,34 @@ def display(data, title=None):
         return
 
     pretty_print(data, title=f"Result: ")
+
+def file_save(data, title=None):
+    """Save dictionary data as JSON file."""
+
+    filename = title if title else "file.txt"
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+
+def save(data, title=None):
+    """Save dictionary or list data as JSON files."""
+    
+    if isinstance(data, list):
+        for i, item in enumerate(data, 1):
+            filename = f"{title}-{i}.json" if title else f"gitraze-data-{i}.json"
+            file_save(item, filename)
+    else:
+        filename = f"{title}.json" if title else "gitraze-data.json"
+        file_save(data, filename)
+
+def output_action(action, data, title=None):
+    """Perform the specified output action (display or save) on the data."""
+    
+    if action == "display":
+        display(data, title)
+    elif action == "save":
+        save(data, title)
+    else:
+        raise ValueError("Invalid action. Use 'display' or 'save'.")
 
 def format_date(date_str):
     """Format a GitHub API date string for display."""
