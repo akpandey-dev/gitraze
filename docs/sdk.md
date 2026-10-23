@@ -8,7 +8,7 @@ The recommended import style is:
 import gitraze as gz
 ```
 
-The SDK currently provides functions for retrieving users and repositories, searching GitHub, and displaying results.
+The SDK currently provides functions for retrieving users and repositories, searching GitHub, and handling output.
 
 ---
 
@@ -187,21 +187,80 @@ The available processed fields may change as the SDK develops.
 
 ---
 
+## `gz.output_action()`
+
+Handles Gitraze data by routing it to one of the SDK's output functions.
+
+### How it works
+
+`output_action()` accepts an output action and Gitraze data. Based on the selected action, it calls the corresponding output function.
+
+The supported actions are:
+
+* `display` : Calls `gz.display()` to display the data in the terminal.
+* `save` : Calls `gz.save()` to save the data to a file.
+
+### Syntax
+
+```python
+gz.output_action(action, data, title=None)
+```
+
+* `action` : The output action to perform.
+* `data` : Data to pass to the selected output function.
+* `title` : Optional title passed to the selected output function. Default is `None`.
+
+
+### Display
+
+Use `display` to route the data to `gz.display()`.
+
+```py
+gz.output_action("display", data)
+```
+
+This is equivalent to calling:
+
+```py
+gz.display(data)
+```
+
+For the complete syntax and behavior of `gz.display()`, see the `gz.display()` section.
+
+### Save
+
+Use `save` to route the data to `gz.save()`. The file is saved in `.json` format.
+
+```py
+gz.output_action("save", data)
+```
+
+This is equivalent to calling:
+
+```py
+gz.save(data)
+```
+
+For the complete syntax and behavior of `gz.save()`, see the `gz.save()` section.
+
+---
+
 ## `gz.display()`
 
 Displays Gitraze data in a human-readable terminal format.
 
 ### How it works
 
-`display()` accepts Gitraze data and formats it for terminal output rather than returning the data in the same way as the SDK query functions.
+`display()` accepts Gitraze data and formats it for terminal output.
 
 ### Syntax
 
-```python
-gz.display(data)
+```py
+gz.display(data, title=None)
 ```
 
 * `data` : Data returned by a Gitraze SDK function.
+* `title` : Optional title to display above the output. Default is `None`.
 
 ### Example
 
@@ -216,6 +275,8 @@ gz.display(user)
 Example output:
 
 ```text
+Result:
+--------
 Name             : The Octocat
 Login            : octocat
 Id               : 583231
@@ -223,7 +284,7 @@ Node_id          : MDQ6VXNlcjU4MzIzMQ==
 Type             : User
 User_view_type   : public
 Bio              : None
-Followers        : 22578
+Followers        : 24724
 Following        : 9
 Public_repos     : 8
 Public_gists     : 8
@@ -238,5 +299,32 @@ Exact fields and values may differ depending on the GitHub API response.
 
 ---
 
+## `gz.save()`
 
+Saves Gitraze data to a `.json` file.
+
+### How it works
+
+`save()` accepts Gitraze data and writes it to a JSON file.
+
+### Syntax
+
+```python
+gz.save(data, title=None)
+```
+
+* `data` : Data returned by a Gitraze SDK function.
+* `title` : Optional title used when generating the output filename. Default is `None`.
+
+### Example
+
+```python
+import gitraze as gz
+
+user = gz.user("octocat")
+
+gz.save(user)
+```
+
+---
 > The SDK is designed to provide programmatic access to the same GitHub data used by Gitraze's CLI.

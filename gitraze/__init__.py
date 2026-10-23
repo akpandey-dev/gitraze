@@ -6,7 +6,7 @@ from .utils.helpers import display
 from .utils.helpers import save
 from .utils.helpers import output_action
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 
 USERS = "users"
 REPOS = "repos"

@@ -4,7 +4,7 @@
 
 Gitraze is a CLI and Python library for exploring, analyzing, and extracting insights from GitHub through the REST API, with GraphQL planned.
 
-⚠️ **Status:** Early development — expect bugs, missing features, and rapid changes. APIs and CLI may change without notice.
+**Status:** Early development — expect bugs, missing features, and rapid changes. APIs and CLI may change without notice.
 
 > Built for developers who prefer terminals over tabs.
 
@@ -37,14 +37,17 @@ Gitraze is built around a simpler approach:
 ## Features
 
 * Modular system
-* CLI-first workflow
 * GitHub REST API integration
+* CLI-first workflow
+* SDK support
 * Repository insights
 * User analysis
 * Search users, repositories, issues, pull requests, and topics
 * Automatic filtering of pull requests and issues
 * Human-readable timestamps
 * Cleaned descriptions
+* Three data formats
+* Save or display output
 * Analytics modules in progress
 * GraphQL planned
 
@@ -86,7 +89,7 @@ Example:
 ```bash
 gitraze --version
 gitraze --help
-gitraze user octocat --data-format=raw
+gitraze user octocat --data-format=raw --output-action=save
 gitraze repo torvalds/linux --data-format=full # Query format must match
 gitraze search repos "machine learning" -n 5 --data-format=compact
 gitraze analyze <target> # Coming soon!
