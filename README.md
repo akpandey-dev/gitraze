@@ -109,7 +109,7 @@ print(user["name"])
 print(user["followers"])
 ```
 
-For command usage, API reference, output formats, and examples, see the **[documentation](docs/)**.
+For command usage, API reference, output formats, and examples, see the **[documentation](https://github.com/akpandey-dev/gitraze/tree/main/docs/)**.
 
 ---
 

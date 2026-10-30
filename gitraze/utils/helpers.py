@@ -48,7 +48,7 @@ def display(data, title=None):
 
         return
 
-    pretty_print(data, title=f"Result: ")
+    pretty_print(data, title=title if title else "Result")
 
 def file_save(data, title=None):
     """Save dictionary data as JSON file."""
